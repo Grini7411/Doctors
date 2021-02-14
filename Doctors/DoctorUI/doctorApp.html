@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DoctorApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script  src="doctor.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-check">
+                            <label class="form-check-label" for="isActiveCheckbox">
+                                <input class="form-check-input" type="checkbox" value="isActive" id="isActiveCheckbox">
+                                הצג פעילים בלבד
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="isPayingCheckbox">
+                                <input class="form-check-input" type="checkbox" value="isPaying" id="isPayingCheckbox" >
+                                הצג משלמים בלבד
+                            </label>
+                        </div>
+                        <div id="target"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+
+    <template id="doctorTemp">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h5 class="docName"></h5>
+                            <div class="stars"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div>נותן שירות בשפה: <span class="languages"></span></div>
+                            <div>לרופא יש כתבה משוייכת: <span class="isArticle"></span></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-outline-primary tel-btn"></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-outline-primary contact-btn">צור קשר</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div id="contactModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">אימייל</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">שם מלא</label>
+                        <input type="text" class="form-control" id="fullName" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">טלפון</label>
+                        <input type="text" class="form-control" id="phone" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="sendMsgBtn" type="button" class="btn btn-primary" onclick="sendMessage()">שלח פניה</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
